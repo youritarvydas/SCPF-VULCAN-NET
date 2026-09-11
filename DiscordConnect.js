@@ -14,7 +14,6 @@ const REDIRECT_URI =
 router.get("/login/discord", (req, res) => {
 const state = crypto.randomBytes(32).toString("hex")
 
-```
 req.session.discordOauthState = state
 
 req.session.save((err) => {
@@ -41,7 +40,6 @@ req.session.save((err) => {
 		`https://discord.com/oauth2/authorize?${params.toString()}`
 	)
 })
-```
 
 })
 
@@ -53,7 +51,6 @@ error,
 error_description
 } = req.query
 
-```
 if (error) {
 	return res.status(400).send(`
 		<h1>OAuth Error</h1>
@@ -210,7 +207,7 @@ try {
 		"Internal server error."
 	)
 }
-```
+
 
 })
 
