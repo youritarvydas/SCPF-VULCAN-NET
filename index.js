@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 3000
 const CLIENT_ID = process.env.ROBLOX_CLIENT_ID
 const CLIENT_SECRET = process.env.ROBLOX_CLIENT_SECRET
 
-const REDIRECT_URI = `https://discordtoroblox.youritarvydas.workers.dev/oauth/callback`
+const REDIRECT_URI = `https://scpf-vulcan-net.onrender.com/oauth/callback`
 
 app.use(express.static("public"))
 app.use(express.json())
