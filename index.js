@@ -32,8 +32,6 @@ console.error("SESSION_SECRET is not configured.")
 process.exit(1)
 }
 
-const session = require("express-session")
-
 app.set("trust proxy", 1)
 
 app.use(
