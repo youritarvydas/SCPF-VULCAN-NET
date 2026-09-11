@@ -269,6 +269,6 @@ app.get("/logout", (req, res) => {
 })
 
 app.listen(PORT, () => {
-	console.log(`Server running at https://discordtoroblox.youritarvydas.workers.dev`)
+	console.log(`Server running at https://scpf-vulcan-net.onrender.com`)
 	console.log(`OAuth callback: ${REDIRECT_URI}`)
 })
