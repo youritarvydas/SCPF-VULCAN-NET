@@ -32,18 +32,24 @@ console.error("SESSION_SECRET is not configured.")
 process.exit(1)
 }
 
-app.use(session({
-secret: process.env.SESSION_SECRET,
-resave: false,
-saveUninitialized: false,
-name: "spas.sid",
-cookie: {
-httpOnly: true,
-secure: true,
-sameSite: "lax",
-maxAge: 24 * 60 * 60 * 1000
-}
-}))
+const session = require("express-session")
+
+app.set("trust proxy", 1)
+
+app.use(
+	session({
+		secret: process.env.SESSION_SECRET,
+		resave: false,
+		saveUninitialized: false,
+		proxy: true,
+		cookie: {
+			httpOnly: true,
+			secure: true,
+			sameSite: "lax",
+			maxAge: 1000 * 60 * 60
+		}
+	})
+)
 
 app.use(discordConnect)
 
