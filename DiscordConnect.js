@@ -9,7 +9,7 @@ const CLIENT_ID = process.env.DISCORD_CLIENT_ID
 const CLIENT_SECRET =
 	process.env.DISCORD_CLIENT_SECRET || process.env.DISCORD_SECRET_ID
 const REDIRECT_URI =
-	` https://discordtoroblox.youritarvydas.workers.dev/oauth/discord/callback`
+	`https://scpf-vulcan-net.onrender.com/oauth/discord/callback`
 
 router.get("/login/discord", (req, res) => {
 	const state = crypto.randomBytes(32).toString("hex")
