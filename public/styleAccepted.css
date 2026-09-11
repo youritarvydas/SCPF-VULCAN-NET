@@ -1,0 +1,1103 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #091213;
+    --sidebar: #0b1516;
+    --sidebar-hover: #111f20;
+    --panel: rgba(18, 31, 32, 0.94);
+    --panel-light: rgba(23, 39, 40, 0.96);
+
+    --border: rgba(155, 190, 193, 0.12);
+
+    --text: #edf5f5;
+    --muted: #899a9b;
+
+    --blue: #55b8ed;
+    --green: #55c98a;
+    --orange: #e5a257;
+    --purple: #9b87df;
+    --red: #d96d6d;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: var(--text);
+
+    background:
+        linear-gradient(
+            rgba(7, 20, 20, 0.88),
+            rgba(7, 20, 20, 0.95)
+        ),
+        url("/81ba7f4a-3aff-484e-a521-f8be95ff4c17.png")
+        center / cover fixed no-repeat;
+}
+
+body {
+    min-height: 100vh;
+}
+
+body::after {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    z-index: 999;
+
+    pointer-events: none;
+
+    opacity: 0.08;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.15) 0,
+            rgba(255, 255, 255, 0.15) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+
+    mix-blend-mode: overlay;
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.Dashboard {
+    display: flex;
+
+    min-height: 100vh;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.Sidebar {
+    position: fixed;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+    z-index: 20;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 250px;
+
+    padding: 25px 15px;
+
+    background: rgba(8, 17, 18, 0.97);
+
+    border-right: 1px solid var(--border);
+
+    box-shadow:
+        5px 0 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Logo */
+
+.Logo {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 5px 12px;
+
+    margin-bottom: 35px;
+}
+
+.LogoIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 8px;
+
+    color: var(--blue);
+
+    font-size: 23px;
+
+    background: rgba(85, 184, 237, 0.08);
+
+    border: 1px solid rgba(85, 184, 237, 0.3);
+
+    box-shadow:
+        0 0 15px rgba(85, 184, 237, 0.05);
+}
+
+.Logo strong {
+    display: block;
+
+    font-size: 18px;
+
+    letter-spacing: 1px;
+}
+
+.Logo span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+
+/* Navigation */
+
+.Sidebar nav {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.NavItem {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    height: 45px;
+
+    padding: 0 14px;
+
+    color: #91a0a1;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    border-radius: 6px;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+.NavItem span {
+    width: 20px;
+
+    text-align: center;
+
+    font-size: 16px;
+}
+
+.NavItem:hover {
+    color: #ffffff;
+
+    background: var(--sidebar-hover);
+}
+
+.NavItem.active {
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(85, 184, 237, 0.16),
+            rgba(85, 184, 237, 0.04)
+        );
+
+    border-left: 2px solid var(--blue);
+}
+
+
+/* Sidebar bottom */
+
+.SidebarBottom {
+    margin-top: auto;
+}
+
+.SystemStatus {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 12px 14px;
+
+    margin-bottom: 10px;
+
+    color: #6f8182;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+}
+
+.SystemStatus span {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    box-shadow:
+        0 0 8px rgba(85, 201, 138, 0.6);
+}
+
+.Logout {
+    width: 100%;
+    height: 42px;
+
+    color: #9aa8a9;
+
+    text-align: left;
+
+    padding: 0 14px;
+
+    background: transparent;
+
+    border: 1px solid var(--border);
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.15s ease,
+        background 0.15s ease;
+}
+
+.Logout:hover {
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.04);
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.Main {
+    width: calc(100% - 250px);
+
+    min-height: 100vh;
+
+    margin-left: 250px;
+}
+
+
+/* =========================
+   TOP BAR
+========================= */
+
+.TopBar {
+    height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 38px;
+
+    background: rgba(10, 19, 20, 0.88);
+
+    border-bottom: 1px solid var(--border);
+}
+
+.SectionLabel {
+    display: block;
+
+    color: #657879;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+}
+
+.TopBar h1 {
+    margin: 5px 0 0;
+
+    font-size: 24px;
+
+    font-weight: 600;
+}
+
+
+/* Account */
+
+.Account {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.AccountText {
+    text-align: right;
+}
+
+.AccountText strong {
+    display: block;
+
+    font-size: 13px;
+}
+
+.AccountText span {
+    display: block;
+
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+.SmallAvatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: #182728;
+
+    border: 1px solid var(--border);
+
+    color: #6e8081;
+
+    font-size: 17px;
+}
+
+.SmallAvatar img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.Content {
+    max-width: 1450px;
+
+    margin: 0 auto;
+
+    padding: 30px 38px 45px;
+}
+
+
+/* =========================
+   WELCOME
+========================= */
+
+.Welcome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 130px;
+
+    padding: 25px 28px;
+
+    margin-bottom: 20px;
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(25, 47, 48, 0.95),
+            rgba(16, 29, 30, 0.94)
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.18);
+}
+
+.Welcome h2 {
+    margin: 7px 0 8px;
+
+    font-size: 23px;
+
+    font-weight: 600;
+}
+
+.Welcome p {
+    max-width: 700px;
+
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+.Clearance {
+    min-width: 125px;
+
+    padding: 16px;
+
+    text-align: center;
+
+    background: rgba(0, 0, 0, 0.16);
+
+    border: 1px solid var(--border);
+
+    border-radius: 6px;
+}
+
+.Clearance span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+}
+
+.Clearance strong {
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--blue);
+
+    font-size: 17px;
+}
+
+
+/* =========================
+   LINKED ACCOUNTS
+========================= */
+
+.Panel {
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.16);
+}
+
+.LinkedAccounts {
+    margin-bottom: 20px;
+}
+
+.PanelHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 70px;
+
+    padding: 18px 24px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.PanelLabel {
+    display: block;
+
+    color: #657879;
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.8px;
+}
+
+.PanelHeader h2 {
+    margin: 5px 0 0;
+
+    font-size: 17px;
+
+    font-weight: 600;
+}
+
+.PanelID {
+    color: #596a6b;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+
+/* Accounts */
+
+.AccountsConnection {
+    display: grid;
+
+    grid-template-columns: 1fr 160px 1fr;
+
+    align-items: center;
+
+    min-height: 190px;
+
+    padding: 25px 35px;
+}
+
+.LinkedAccount {
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+}
+
+.LinkedAccount:last-child {
+    flex-direction: row-reverse;
+
+    text-align: right;
+}
+
+
+/* Profile picture */
+
+.ProfilePicture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 90px;
+    height: 90px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: #142223;
+
+    border: 2px solid rgba(255, 255, 255, 0.12);
+
+    color: #667879;
+
+    font-size: 28px;
+    font-weight: bold;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.35);
+}
+
+.ProfilePicture img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.ProfilePicture.roblox {
+    border-color: rgba(0, 119, 255, 0.45);
+}
+
+.ProfilePicture.discord {
+    border-color: rgba(88, 101, 242, 0.5);
+}
+
+.ProfilePicture.not-linked {
+    opacity: 0.55;
+
+    border-style: dashed;
+}
+
+
+/* Account text */
+
+.AccountName span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--blue);
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+}
+
+.AccountName strong {
+    display: block;
+
+    font-size: 17px;
+
+    font-weight: 600;
+}
+
+.AccountName small {
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+
+/* Connection */
+
+.ConnectionLine {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.ConnectionLine::before {
+    content: "";
+
+    position: absolute;
+
+    top: 23px;
+
+    left: -70px;
+    right: -70px;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(85, 184, 237, 0.08),
+            rgba(85, 184, 237, 0.45),
+            rgba(85, 184, 237, 0.08)
+        );
+}
+
+.ConnectionIcon {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+
+    border-radius: 50%;
+
+    background: #162526;
+
+    border: 1px solid rgba(85, 184, 237, 0.35);
+
+    font-size: 17px;
+
+    box-shadow:
+        0 0 15px rgba(85, 184, 237, 0.06);
+}
+
+.ConnectionStatus {
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 12px;
+
+    padding: 5px 9px;
+
+    color: var(--green);
+
+    background: #132323;
+
+    border-radius: 4px;
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.2px;
+}
+
+.ConnectionStatus.not-linked {
+    color: #7b8b8c;
+}
+
+
+/* =========================
+   STAT CARDS
+========================= */
+
+.Stats {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.StatCard {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    min-height: 88px;
+
+    padding: 18px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+}
+
+.StatCard span {
+    display: block;
+
+    color: #687a7b;
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.StatCard strong {
+    display: block;
+
+    margin-top: 6px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+.StatIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    border-radius: 7px;
+
+    font-size: 16px;
+}
+
+.StatIcon.blue {
+    color: var(--blue);
+    background: rgba(85, 184, 237, 0.1);
+}
+
+.StatIcon.green {
+    color: var(--green);
+    background: rgba(85, 201, 138, 0.1);
+}
+
+.StatIcon.orange {
+    color: var(--orange);
+    background: rgba(229, 162, 87, 0.1);
+}
+
+.StatIcon.purple {
+    color: var(--purple);
+    background: rgba(155, 135, 223, 0.1);
+}
+
+
+/* =========================
+   QUICK ACCESS
+========================= */
+
+.QuickAccess {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 12px;
+
+    padding: 20px;
+}
+
+.QuickAccess button {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    min-height: 125px;
+
+    padding: 17px;
+
+    text-align: left;
+
+    color: var(--text);
+
+    background: rgba(255, 255, 255, 0.015);
+
+    border: 1px solid var(--border);
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.QuickAccess button:hover {
+    background: var(--panel-light);
+
+    border-color: rgba(85, 184, 237, 0.2);
+
+    transform: translateY(-2px);
+}
+
+.QuickAccess button > span {
+    margin-bottom: 15px;
+
+    color: var(--blue);
+
+    font-size: 18px;
+}
+
+.QuickAccess button strong {
+    font-size: 13px;
+}
+
+.QuickAccess button small {
+    margin-top: 6px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.Footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 55px;
+
+    padding: 0 38px;
+
+    color: #566768;
+
+    font-size: 9px;
+
+    letter-spacing: 0.5px;
+
+    border-top: 1px solid var(--border);
+
+    background: rgba(8, 15, 16, 0.75);
+}
+
+.Footer b {
+    color: var(--green);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1100px) {
+
+    .Stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .QuickAccess {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .AccountsConnection {
+        grid-template-columns: 1fr 120px 1fr;
+
+        padding: 25px 20px;
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .Sidebar {
+        width: 70px;
+
+        padding: 20px 10px;
+    }
+
+    .Logo {
+        justify-content: center;
+
+        padding: 0;
+
+        margin-bottom: 25px;
+    }
+
+    .Logo > div:last-child,
+    .NavItem:not(.active)::after,
+    .NavItem {
+        font-size: 0;
+    }
+
+    .LogoIcon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .NavItem {
+        justify-content: center;
+
+        padding: 0;
+    }
+
+    .NavItem span {
+        font-size: 16px;
+    }
+
+    .SystemStatus {
+        justify-content: center;
+
+        padding: 10px 0;
+
+        font-size: 0;
+    }
+
+    .Logout {
+        font-size: 0;
+
+        text-align: center;
+
+        padding: 0;
+    }
+
+    .Logout:first-letter {
+        font-size: 16px;
+    }
+
+    .Main {
+        width: calc(100% - 70px);
+
+        margin-left: 70px;
+    }
+
+    .Content {
+        padding: 20px;
+    }
+
+    .Welcome {
+        align-items: flex-start;
+
+        gap: 20px;
+
+        flex-direction: column;
+    }
+
+    .AccountsConnection {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+    .ConnectionLine {
+        transform: rotate(90deg);
+    }
+
+    .LinkedAccount:last-child {
+        flex-direction: row;
+
+        text-align: left;
+    }
+
+    .Footer {
+        padding: 0 20px;
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    .TopBar {
+        padding: 0 20px;
+    }
+
+    .AccountText {
+        display: none;
+    }
+
+    .Stats {
+        grid-template-columns: 1fr;
+    }
+
+    .QuickAccess {
+        grid-template-columns: 1fr;
+    }
+
+    .ProfilePicture {
+        width: 70px;
+        height: 70px;
+    }
+
+    .Footer {
+        gap: 10px;
+
+        flex-wrap: wrap;
+
+        padding: 15px 20px;
+    }
+}

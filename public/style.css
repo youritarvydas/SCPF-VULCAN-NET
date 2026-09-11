@@ -1,0 +1,385 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #172525;
+}
+
+.page {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    min-width: 900px;
+    min-height: 550px;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            rgba(13, 34, 34, 0.56),
+            rgba(13, 34, 34, 0.56)
+        ),
+        url("81ba7f4a-3aff-484e-a521-f8be95ff4c17.png")
+        center / cover no-repeat;
+}
+
+/* CRT / camera scanlines */
+.page::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.18;
+
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.18) 0,
+        rgba(255, 255, 255, 0.18) 1px,
+        transparent 1px,
+        transparent 4px
+    );
+
+    mix-blend-mode: overlay;
+}
+
+.content {
+    position: absolute;
+    z-index: 2;
+    top: 51%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: min(600px, 90vw);
+    text-align: center;
+    color: white;
+}
+
+.title {
+    margin: 0 0 12px;
+
+    font-size: clamp(25px, 2vw, 31px);
+    line-height: 1;
+    font-weight: 700;
+
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.65);
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.login-button {
+    height: 34px;
+    padding: 0 16px;
+
+    border: 0;
+    border-radius: 7px;
+
+    color: #ffffff;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+
+    transition:
+        filter 0.15s ease,
+        transform 0.15s ease;
+}
+
+.login-button:hover {
+    filter: brightness(1.08);
+    transform: translateY(-3px);
+}
+
+.login-button:active {
+    transform: translateY(1px);
+}
+
+.roblox {
+    background: linear-gradient(90deg, #0877ff, #285cff);
+}
+
+.discord {
+    background: linear-gradient(90deg, #5865f2, #6d59ed);
+}
+
+.icon {
+    display: inline-block;
+    margin-right: 8px;
+
+    font-size: 15px;
+    vertical-align: -1px;
+}
+
+.cookie {
+    position: absolute;
+    z-index: 3;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 82px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 2.1%;
+
+    color: #eeeeee;
+    font-size: 13px;
+
+    background: rgba(19, 25, 24, 0.83);
+}
+
+.cookie-text {
+    flex: 1;
+
+    margin-left: 0;
+
+    text-align: center;
+    white-space: nowrap;
+}
+
+.cookie-text a {
+    color: #dddddd;
+    text-decoration: underline;
+}
+
+.understood {
+    flex: 0 0 auto;
+
+    height: 35px;
+    margin-left: 20px;
+    padding: 0 16px;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 7px;
+
+    color: #eeeeee;
+    font-size: 13px;
+    font-weight: 700;
+
+    background: rgba(255, 255, 255, 0.03);
+
+    cursor: pointer;
+}
+
+.understood:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.footer-links {
+    position: absolute;
+
+    left: 16px;
+    bottom: 17px;
+
+    z-index: 4;
+
+    display: flex;
+    gap: 23px;
+
+    font-size: 12px;
+}
+
+.footer-links a {
+    color: #eeeeee;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 950px) {
+    .page {
+        min-width: 0;
+    }
+
+    .cookie {
+        height: 90px;
+        padding: 0 16px;
+    }
+
+    .cookie-text {
+        padding-left: 170px;
+        white-space: normal;
+    }
+}
+
+
+.LinkedAccounts {
+    margin-bottom: 20px;
+}
+
+.AccountsConnection {
+    display: grid;
+    grid-template-columns: 1fr 160px 1fr;
+    align-items: center;
+
+    min-height: 180px;
+    padding: 25px 35px;
+}
+
+.LinkedAccount {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.ProfilePicture {
+    width: 92px;
+    height: 92px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: #172526;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+
+    color: #687879;
+    font-size: 30px;
+    font-weight: bold;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.35);
+}
+
+.ProfilePicture img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.AccountName span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #55b8ed;
+
+    font-size: 10px;
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+}
+
+.AccountName strong {
+    display: block;
+
+    color: #edf4f4;
+
+    font-size: 18px;
+}
+
+.AccountName small {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #7e9091;
+
+    font-size: 11px;
+}
+
+.ConnectionLine {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+.ConnectionLine::before {
+    content: "";
+
+    position: absolute;
+
+    top: 23px;
+    left: -70px;
+    right: -70px;
+
+    height: 1px;
+
+    background: rgba(85, 184, 237, 0.25);
+
+    z-index: 0;
+}
+
+.ConnectionIcon {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+
+    border-radius: 50%;
+
+    background: #172526;
+
+    border: 1px solid rgba(85, 184, 237, 0.3);
+
+    font-size: 18px;
+}
+
+.ConnectionStatus {
+    position: relative;
+    z-index: 1;
+
+    margin-top: 12px;
+
+    padding: 5px 10px;
+
+    border-radius: 4px;
+
+    background: #172526;
+
+    color: #55c98a;
+
+    font-size: 9px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.ConnectionStatus.not-linked {
+    color: #8d9fa0;
+}
+
+.ProfilePicture.not-linked {
+    border-style: dashed;
+    opacity: 0.65;
+}
+
+.ProfilePicture.roblox {
+    border-color: rgba(0, 119, 255, 0.5);
+}
+
+.ProfilePicture.discord {
+    border-color: rgba(88, 101, 242, 0.5);
+}

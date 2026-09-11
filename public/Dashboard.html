@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCPF - Site Dashboard</title>
+    <link rel="stylesheet" href="/styleAccepted.css">
+</head>
+
+<body>
+
+    <div class="Dashboard">
+
+        <aside class="Sidebar">
+
+            <div class="Logo">
+                <div class="LogoIcon">⚛</div>
+
+                <div>
+                    <strong>SCPF</strong>
+                    <span>SITE NETWORK</span>
+                </div>
+            </div>
+
+            <nav>
+                <a class="NavItem active" href="#">
+                    <span>▦</span>
+                    Dashboard
+                </a>
+
+                <a class="NavItem" href="#">
+                    <span>◉</span>
+                    My Profile
+                </a>
+
+                <a class="NavItem" href="#">
+                    <span>♟</span>
+                    Personnel
+                </a>
+
+                <a class="NavItem" href="#">
+                    <span>⌖</span>
+                    Sites
+                </a>
+
+                <a class="NavItem" href="#">
+                    <span>▤</span>
+                    Applications
+                </a>
+            </nav>
+
+            <div class="SidebarBottom">
+                <div class="SystemStatus">
+                    <span></span>
+                    SYSTEM ONLINE
+                </div>
+
+                <button onclick="logout()" class="Logout">
+                    ↪ Log out
+                </button>
+            </div>
+
+        </aside>
+
+
+        <main class="Main">
+
+            <header class="TopBar">
+
+                <div>
+                    <span class="SectionLabel">SECURE NETWORK</span>
+                    <h1>Dashboard</h1>
+                </div>
+
+                <div class="Account">
+
+                    <div class="AccountText">
+                        <strong id="headerUsername">Personnel</strong>
+                        <span id="headerRank">
+                            Foundation Personnel
+                        </span>
+                    </div>
+
+                    <div class="SmallAvatar" id="headerAvatar">
+                        <span>◉</span>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <div class="Content">
+
+                <section class="Welcome">
+
+                    <div>
+                        <span class="SectionLabel">
+                            AUTHENTICATION SUCCESSFUL
+                        </span>
+
+                        <h2>
+                            Welcome back, Personnel.
+                        </h2>
+
+                        <p>
+                            You have successfully logged in on your account.
+                            Your authorized SCPF systems are available below.
+                        </p>
+                    </div>
+
+                    <div class="Clearance">
+                        <span>CLEARANCE</span>
+                        <strong>LEVEL 1</strong>
+                    </div>
+
+                </section>
+
+
+                <!-- LINKED ACCOUNTS -->
+
+                <section class="Panel LinkedAccounts">
+
+                    <div class="PanelHeader">
+
+                        <div>
+                            <span class="PanelLabel">
+                                ACCOUNT CONNECTION
+                            </span>
+
+                            <h2>
+                                Linked Accounts
+                            </h2>
+                        </div>
+
+                        <span class="PanelID">
+                            ACC-01
+                        </span>
+
+                    </div>
+
+
+                    <div class="AccountsConnection">
+
+                        <!-- ROBLOX -->
+
+                        <div class="LinkedAccount">
+
+                            <div
+                                class="ProfilePicture"
+                                id="robloxAvatar"
+                            >  
+                                <span>R</span>
+                            </div>
+
+                            <div class="AccountName">
+                                <span>ROBLOX</span>
+
+                                <strong id="robloxUsername">
+                                    Not linked
+                                </strong>
+
+                                <small id="robloxId">
+                                    No Roblox account linked
+                                </small>
+                            </div>
+
+                        </div>
+
+
+                        <!-- CONNECTION -->
+
+                        <div class="ConnectionLine">
+
+                            <div class="ConnectionIcon" id="connectionIcon">
+                                🔗
+                            </div>
+
+                            <div
+                                class="ConnectionStatus"
+                                id="connectionStatus"
+                            >
+                                NOT LINKED
+                            </div>
+
+                        </div>
+
+
+                        <!-- DISCORD -->
+
+                        <div class="LinkedAccount">
+
+                            <div
+                                class="ProfilePicture"
+                                id="discordAvatar"
+                            >
+                                <span>D</span>
+                            </div>
+
+                            <div class="AccountName">
+                                <span>DISCORD</span>
+
+                                <strong id="discordUsername">
+                                    Not linked
+                                </strong>
+
+                                <small id="discordId">
+                                    No Discord account linked
+                                </small>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ACCOUNT STATUS -->
+
+                <section class="Stats">
+
+                    <div class="StatCard">
+
+                        <div class="StatIcon blue">
+                            ◉
+                        </div>
+
+                        <div>
+                            <span>ACCOUNT STATUS</span>
+                            <strong>Active</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="StatCard">
+
+                        <div class="StatIcon green">
+                            ✓
+                        </div>
+
+                        <div>
+                            <span>SECURITY STATUS</span>
+                            <strong>Verified</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="StatCard">
+
+                        <div class="StatIcon orange">
+                            ⌁
+                        </div>
+
+                        <div>
+                            <span>LAST LOGIN</span>
+                            <strong>Just now</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="StatCard">
+
+                        <div class="StatIcon purple">
+                            ▣
+                        </div>
+
+                        <div>
+                            <span>ACCESS LEVEL</span>
+                            <strong>Level 1</strong>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- QUICK ACCESS -->
+
+                <section class="Panel">
+
+                    <div class="PanelHeader">
+
+                        <div>
+                            <span class="PanelLabel">
+                                AUTHORIZED SYSTEMS
+                            </span>
+
+                            <h2>
+                                Quick Access
+                            </h2>
+                        </div>
+
+                    </div>
+
+
+                    <div class="QuickAccess">
+
+                        <button>
+                            <span>◉</span>
+                            <strong>Personnel Profile</strong>
+                            <small>View your account information</small>
+                        </button>
+
+                        <button>
+                            <span>♟</span>
+                            <strong>Personnel Directory</strong>
+                            <small>View authorized personnel</small>
+                        </button>
+
+                        <button>
+                            <span>⌖</span>
+                            <strong>Site Network</strong>
+                            <small>Browse Foundation facilities</small>
+                        </button>
+
+                        <button>
+                            <span>▤</span>
+                            <strong>Applications</strong>
+                            <small>Manage your applications</small>
+                        </button>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <footer class="Footer">
+                <span>SCPF SECURE NETWORK</span>
+                <span>
+                    System status:
+                    <b>Operational</b>
+                </span>
+                <span>© SCP Foundation</span>
+            </footer>
+
+        </main>
+
+    </div>
+
+    <script src="/script.js"></script>
+
+</body>
+</html>
