@@ -14,6 +14,7 @@ const REDIRECT_URI =
 router.get("/login/discord", (req, res) => {
 const state = crypto.randomBytes(32).toString("hex")
 
+
 req.session.discordOauthState = state
 
 req.session.save((err) => {
@@ -36,10 +37,13 @@ req.session.save((err) => {
 		state: state
 	})
 
-	res.redirect(
-		`https://discord.com/oauth2/authorize?${params.toString()}`
-	)
+	const authorizationUrl =
+		"https://discord.com/oauth2/authorize?" +
+		params.toString()
+
+	res.redirect(authorizationUrl)
 })
+
 
 })
 
@@ -76,11 +80,6 @@ if (!req.session.discordOauthState) {
 		"Discord OAuth state missing from session."
 	)
 
-	console.error(
-		"Received state:",
-		state
-	)
-
 	return res.status(400).send(
 		"Discord OAuth session expired or was lost."
 	)
@@ -109,6 +108,20 @@ if (state !== req.session.discordOauthState) {
 delete req.session.discordOauthState
 
 try {
+	if (!CLIENT_ID) {
+		console.error("DISCORD_CLIENT_ID is missing.")
+		return res.status(500).send(
+			"Discord Client ID is not configured."
+		)
+	}
+
+	if (!CLIENT_SECRET) {
+		console.error("DISCORD_CLIENT_SECRET is missing.")
+		return res.status(500).send(
+			"Discord Client Secret is not configured."
+		)
+	}
+
 	const body = new URLSearchParams({
 		client_id: CLIENT_ID,
 		client_secret: CLIENT_SECRET,
@@ -129,20 +142,63 @@ try {
 		}
 	)
 
-	const tokens = await tokenResponse.json()
+	const tokenText = await tokenResponse.text()
+
+	console.log(
+		"Discord token response status:",
+		tokenResponse.status
+	)
+
+	console.log(
+		"Discord token response content-type:",
+		tokenResponse.headers.get("content-type")
+	)
 
 	if (!tokenResponse.ok) {
 		console.error(
-			"Discord token error:",
+			"Discord token response:",
+			tokenText
+		)
+
+		return res.status(400).send(`
+			<h1>Discord Token Error</h1>
+			<p>Status: ${tokenResponse.status}</p>
+			<pre>${tokenText}</pre>
+		`)
+	}
+
+	let tokens
+
+	try {
+		tokens = JSON.parse(tokenText)
+	} catch (error) {
+		console.error(
+			"Discord returned invalid token response:",
+			tokenText
+		)
+
+		return res.status(502).send(
+			"Discord returned an invalid token response."
+		)
+	}
+
+	if (!tokens.access_token) {
+		console.error(
+			"Discord token response has no access token:",
 			tokens
 		)
 
-		return res.status(400).json(tokens)
+		return res.status(400).json({
+			error:
+				"Discord did not return an access token.",
+			response: tokens
+		})
 	}
 
 	const userResponse = await fetch(
 		"https://discord.com/api/users/@me",
 		{
+			method: "GET",
 			headers: {
 				Authorization:
 					`Bearer ${tokens.access_token}`
@@ -150,15 +206,44 @@ try {
 		}
 	)
 
-	const user = await userResponse.json()
+	const userText = await userResponse.text()
+
+	console.log(
+		"Discord user response status:",
+		userResponse.status
+	)
+
+	console.log(
+		"Discord user response content-type:",
+		userResponse.headers.get("content-type")
+	)
 
 	if (!userResponse.ok) {
 		console.error(
-			"Discord user error:",
-			user
+			"Discord user response:",
+			userText
 		)
 
-		return res.status(400).json(user)
+		return res.status(400).send(`
+			<h1>Discord User Error</h1>
+			<p>Status: ${userResponse.status}</p>
+			<pre>${userText}</pre>
+		`)
+	}
+
+	let user
+
+	try {
+		user = JSON.parse(userText)
+	} catch (error) {
+		console.error(
+			"Discord returned invalid user response:",
+			userText
+		)
+
+		return res.status(502).send(
+			"Discord returned an invalid user response."
+		)
 	}
 
 	console.log(
@@ -207,7 +292,6 @@ try {
 		"Internal server error."
 	)
 }
-
 
 })
 
