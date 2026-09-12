@@ -12,7 +12,7 @@ const REDIRECT_URI =
 "https://scpf-vulcan-net.onrender.com/oauth/discord/callback"
 
 router.get("/login/discord", (req, res) => {
-const state = crypto.randomBytes(32).toString("hex")
+const state = process.env.SESSION_SECRET || crypto.randomBytes(32).toString("hex")
 
 
 req.session.discordOauthState = state
