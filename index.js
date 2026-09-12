@@ -27,9 +27,10 @@ app.set("trust proxy", 1)
 app.use(express.static("public"))
 app.use(express.json())
 
+SESSION_SECRET = process.env.SESSION_SECRET
+
 if (!process.env.SESSION_SECRET) {
-console.error("SESSION_SECRET is not configured.")
-process.exit(1)
+	SESSION_SECRET = crypto.randomBytes(16).toString("hex")
 }
 
 app.set("trust proxy", 1)
