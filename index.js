@@ -20,7 +20,7 @@ const CLIENT_ID = process.env.ROBLOX_CLIENT_ID
 const CLIENT_SECRET = process.env.ROBLOX_CLIENT_SECRET
 
 const REDIRECT_URI =
-"https://scpf-vulcan-net.onrender.com/oauth/callback"
+"https://scpf-vulcan-net20-production.up.railway.app/oauth/callback"
 
 app.set("trust proxy", 1)
 
@@ -353,7 +353,7 @@ console.error("Failed to destroy session:", err)
 
 app.listen(PORT, () => {
 console.log(
-`Server running at https://scpf-vulcan-net.onrender.com`
+`Server running at https://scpf-vulcan-net20-production.up.railway.app/`
 )
 
 console.log(
