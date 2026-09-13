@@ -11,7 +11,7 @@ const CLIENT_SECRET =
 	process.env.DISCORD_SECRET_ID
 
 const REDIRECT_URI =
-	"https://scpf-vulcan-net.onrender.com/oauth/discord/callback"
+	"https://scpf-vulcan-net20-production.up.railway.app/oauth/discord/callback"
 
 const DISCORD_API = "https://discord.com/api/v10"
 
