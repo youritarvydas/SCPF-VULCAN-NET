@@ -3,6 +3,8 @@ require("dotenv").config()
 const express = require("express")
 const crypto = require("crypto")
 const session = require("express-session")
+const pgSession = require("connect-pg-simple")(session)
+const { Pool } = require("pg")
 
 const discordConnect = require("./DiscordConnect")
 const discordBot = require("./Discordbot")
@@ -28,6 +30,11 @@ if (!SESSION_SECRET) {
 	throw new Error("SESSION_SECRET is not configured in Railway.")
 }
 
+
+const pool = new Pool({
+	connectionString: process.env.DATABASE_URL
+})
+
 app.set("trust proxy", 1)
 
 app.use(express.static("public"))
@@ -35,6 +42,10 @@ app.use(express.json())
 
 app.use(
 	session({
+		store: new pgSession({
+			pool: pool,
+			tableName: "user_sessions"
+		}),
 		name: "spas.sid",
 		secret: SESSION_SECRET,
 		resave: false,
