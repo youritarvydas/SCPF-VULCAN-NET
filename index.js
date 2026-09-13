@@ -9,8 +9,8 @@ const discordBot = require("./Discordbot")
 const { sendDirectMessage } = discordBot
 
 const {
-linkAccounts,
-getLinkByRobloxId
+	linkAccounts,
+	getLinkByRobloxId
 } = require("./accountStore")
 
 const app = express()
@@ -20,27 +20,25 @@ const CLIENT_ID = process.env.ROBLOX_CLIENT_ID
 const CLIENT_SECRET = process.env.ROBLOX_CLIENT_SECRET
 
 const REDIRECT_URI =
-"https://scpf-vulcan-net20-production.up.railway.app/oauth/callback"
+	"https://scpf-vulcan-net20-production.up.railway.app/oauth/callback"
+
+const SESSION_SECRET = process.env.SESSION_SECRET
+
+if (!SESSION_SECRET) {
+	throw new Error("SESSION_SECRET is not configured in Railway.")
+}
 
 app.set("trust proxy", 1)
 
 app.use(express.static("public"))
 app.use(express.json())
 
-SESSION_SECRET = process.env.SESSION_SECRET
-
-if (!process.env.SESSION_SECRET) {
-	SESSION_SECRET = crypto.randomBytes(16).toString("hex")
-}
-
-app.set("trust proxy", 1)
-
 app.use(
 	session({
+		name: "spas.sid",
 		secret: SESSION_SECRET,
 		resave: false,
 		saveUninitialized: false,
-		proxy: true,
 		cookie: {
 			httpOnly: true,
 			secure: true,
